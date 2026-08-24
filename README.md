@@ -39,12 +39,11 @@ src/
     fs.js              # prática do módulo nativo fs
     path.js            # prática do módulo nativo path
     http.js            # servidor básico com o módulo nativo http
-    express.js          # API com Express, middlewares e MongoDB
-    typescript/         # prática de Node.js com TypeScript
-      app.ts            # criação do app Express (separado do listen, p/ testes)
-      server.ts          # inicialização do servidor (app.listen)
-      route.ts           # rotas Express em TypeScript
-      route.test.ts       # teste automatizado da rota com Vitest + Supertest
+    express.js          # API com Express e middlewares
+    app.ts              # criação do app Express em TypeScript (separado do listen, p/ testes)
+    server.ts            # inicialização do servidor TypeScript (app.listen)
+    route.ts             # rotas Express em TypeScript
+    route.test.ts         # teste automatizado da rota com Vitest + Supertest
 index.js               # ponto de entrada do projeto
 person.js
 ```
@@ -191,7 +190,7 @@ npm install ejs
 
 ## 🔷 TypeScript
 
-Prática de Node.js tipado com Express, em `src/modules/typescript/`.
+Prática de Node.js tipado com Express, em `src/modules/`.
 
 * `app.ts` cria e configura o app Express (sem subir o servidor), o que permite importá-lo diretamente nos testes
 * `server.ts` importa o `app` e faz o `listen` na porta
@@ -209,7 +208,7 @@ npm run start:ts
 
 Testes unitários/integração com **Vitest** e **Supertest**, cobrindo as rotas Express em TypeScript.
 
-📄 **Exemplo:** `src/modules/typescript/route.test.ts`
+📄 **Exemplo:** `src/modules/route.test.ts`
 
 ```ts
 import { describe, expect, it } from 'vitest';
