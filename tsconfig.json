@@ -8,5 +8,5 @@
     "skipLibCheck": true,
     "outDir": "dist"
   },
-  "include": ["modules/typescript/**/*.ts"]
+  "include": ["src/modules/typescript/**/*.ts"]
 }
