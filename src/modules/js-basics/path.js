@@ -1,7 +1,7 @@
 const path = require('path');
 
 //Apenas o nome do arquivo atual
-console.log(patch.basename(__filename));
+console.log(path.basename(__filename));
 
 
 //Nome do Diretório atual
