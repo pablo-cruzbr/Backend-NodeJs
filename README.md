@@ -1,6 +1,14 @@
-# 📘 Curso de Node.js Básico
+# 📘 Curso de Node.js — Do Básico ao Avançado
 
-Este repositório contém minhas **anotações e práticas** realizadas durante a conclusão de um **curso básico de Node.js**, onde apliquei os conceitos criando commits atômicos e organizando o aprendizado de forma progressiva.
+Este repositório é meu espaço de prática de **Node.js**, do básico ao avançado. Cada tópico é estudado e versionado com **commits atômicos**, documentando a evolução do aprendizado passo a passo.
+
+---
+
+## 🎯 Objetivo do repositório
+
+* Praticar conceitos de Node.js progressivamente, dos módulos nativos até tópicos avançados
+* Registrar cada técnica aprendida em commits pequenos e atômicos (`feat`, `fix`, `style`, `refactor`, `test`)
+* Servir como referência pessoal de estudo
 
 ---
 
@@ -23,12 +31,23 @@ O **Node.js** é um ambiente de execução JavaScript no lado do servidor, const
 
 ---
 
-## ✅ Vantagens do Node.js
+## 📁 Estrutura do projeto
 
-* 🔋 Ótimo uso de memória (baixo custo)
-* 🤝 Harmonia com o front-end (ambos utilizam JavaScript)
-* ⚡ Muito rápido, simples e escalável
-* 📈 Presença extremamente forte no mercado
+```
+src/
+  modules/
+    fs.js              # prática do módulo nativo fs
+    path.js            # prática do módulo nativo path
+    http.js            # servidor básico com o módulo nativo http
+    express.js          # API com Express, middlewares e MongoDB
+    typescript/         # prática de Node.js com TypeScript
+      app.ts            # criação do app Express (separado do listen, p/ testes)
+      server.ts          # inicialização do servidor (app.listen)
+      route.ts           # rotas Express em TypeScript
+      route.test.ts       # teste automatizado da rota com Vitest + Supertest
+index.js               # ponto de entrada do projeto
+person.js
+```
 
 ---
 
@@ -80,7 +99,7 @@ npm install -g nodemon # Instala um pacote globalmente
 
 ### Criando pastas com o módulo `fs`
 
-📄 **Arquivo:** `models/fs.js`
+📄 **Arquivo:** `src/modules/fs.js`
 
 ```js
 const fs = require('fs');
@@ -97,7 +116,7 @@ fs.mkdir(path.join(__dirname, '/test'), (error) => {
 
 ## 🌐 Criando um Servidor com Node.js
 
-📄 **Arquivo:** `http.js`
+📄 **Arquivo:** `src/modules/http.js`
 
 * Utilizamos o módulo `http`
 * Criamos um servidor capaz de responder requisições
@@ -128,18 +147,13 @@ npm run start:dev
 * Atualizar informações
 * Remover registros
 
-### Credenciais (exemplo de estudo):
-
-```txt
-user: admin
-password: 412578code
-```
-
 ### String de conexão:
 
 ```txt
-mongodb+srv://admin:<db_password>@cluster0.gin0m4g.mongodb.net/
+mongodb+srv://<usuario>:<senha>@cluster0.gin0m4g.mongodb.net/
 ```
+
+> Credenciais reais ficam em variáveis de ambiente (`.env`), nunca versionadas.
 
 ---
 
@@ -175,17 +189,74 @@ npm install ejs
 
 ---
 
+## 🔷 TypeScript
+
+Prática de Node.js tipado com Express, em `src/modules/typescript/`.
+
+* `app.ts` cria e configura o app Express (sem subir o servidor), o que permite importá-lo diretamente nos testes
+* `server.ts` importa o `app` e faz o `listen` na porta
+* `route.ts` define as rotas com tipagem do Express (`Request`, `Response`)
+
+### Rodando o servidor TypeScript:
+
+```bash
+npm run start:ts
+```
+
+---
+
+## 🧪 Testes automatizados
+
+Testes unitários/integração com **Vitest** e **Supertest**, cobrindo as rotas Express em TypeScript.
+
+📄 **Exemplo:** `src/modules/typescript/route.test.ts`
+
+```ts
+import { describe, expect, it } from 'vitest';
+import request from 'supertest';
+import app from './app';
+
+describe('GET /home', () => {
+    it('returns a hello world message', async () => {
+        const response = await request(app).get('/home');
+        expect(response.status).toBe(200);
+    });
+});
+```
+
+### Rodando os testes:
+
+```bash
+npm test
+```
+
+---
+
+## 🗺️ Próximos passos (roadmap)
+
+Tópicos que pretendo estudar e adicionar a este repositório:
+
+* ✅ Testes unitários/integração (Vitest + Supertest)
+* ⬜ Filas de processamento assíncrono com **BullMQ**
+* ⬜ **Redis** como cache e broker de filas
+* ⬜ Workers dedicados para processamento em background
+
+---
+
 ## 🧠 Conclusão
 
-Este repositório representa meu **primeiro contato prático com Node.js**, abordando desde conceitos básicos até:
+Este repositório reúne minha prática contínua de **Node.js**, indo de conceitos básicos a tópicos avançados:
 
-* Criação de servidores
-* APIs que retornam JSON
-* Conexão com banco de dados
-* Uso de middlewares
+* Módulos nativos e criação de servidores
+* APIs REST com Express e JSON
+* Conexão com banco de dados (MongoDB/Mongoose)
+* Middlewares
 * Renderização de HTML dinâmico com EJS
+* Node.js com TypeScript
+* Testes automatizados
+* (Em progresso) Filas com BullMQ e Redis
 
-📌 Todos os aprendizados foram versionados com **commits atômicos**, reforçando boas práticas de Git e organização de código.
+📌 Todos os aprendizados são versionados com **commits atômicos**, reforçando boas práticas de Git e organização de código.
 
 ---
 
