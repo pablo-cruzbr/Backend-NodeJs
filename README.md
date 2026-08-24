@@ -36,10 +36,11 @@ O **Node.js** é um ambiente de execução JavaScript no lado do servidor, const
 ```
 src/
   modules/
-    fs.js              # prática do módulo nativo fs
-    path.js            # prática do módulo nativo path
-    http.js            # servidor básico com o módulo nativo http
-    express.js          # API com Express e middlewares
+    js-basics/           # ponto de revisão: fs, path e http em JS puro (ver README da pasta)
+      fs.js
+      path.js
+      http.js
+      test/
     app.ts              # criação do app Express em TypeScript (separado do listen, p/ testes)
     server.ts            # inicialização do servidor TypeScript (app.listen)
     route.ts             # rotas Express em TypeScript
@@ -94,36 +95,14 @@ npm install -g nodemon # Instala um pacote globalmente
 
 ---
 
-## 📁 Trabalhando com o módulo FS
+## 📁 Módulos nativos — ponto de revisão (`js-basics`)
 
-### Criando pastas com o módulo `fs`
-
-📄 **Arquivo:** `src/modules/fs.js`
-
-```js
-const fs = require('fs');
-const path = require('path');
-
-fs.mkdir(path.join(__dirname, '/test'), (error) => {
-  if (error) {
-    return console.log('Error');
-  }
-});
-```
-
----
-
-## 🌐 Criando um Servidor com Node.js
-
-📄 **Arquivo:** `src/modules/http.js`
-
-* Utilizamos o módulo `http`
-* Criamos um servidor capaz de responder requisições
-
-### Inicializar o servidor:
+`fs`, `path` e `http` puros, em `src/modules/js-basics/` — ver o [README dessa pasta](src/modules/js-basics/README.md) para detalhes e como rodar cada script.
 
 ```bash
-npm run start:dev
+node src/modules/js-basics/fs.js
+node src/modules/js-basics/path.js
+node src/modules/js-basics/http.js
 ```
 
 ---
@@ -137,25 +116,6 @@ npm run start:dev
 
 ---
 
-## 🗄️ Banco de Dados — MongoDB
-
-### Operações realizadas:
-
-* Criar registros
-* Ler dados
-* Atualizar informações
-* Remover registros
-
-### String de conexão:
-
-```txt
-mongodb+srv://<usuario>:<senha>@cluster0.gin0m4g.mongodb.net/
-```
-
-> Credenciais reais ficam em variáveis de ambiente (`.env`), nunca versionadas.
-
----
-
 ## 🔌 Middlewares
 
 ### O que são Middlewares?
@@ -164,27 +124,6 @@ mongodb+srv://<usuario>:<senha>@cluster0.gin0m4g.mongodb.net/
 
 * Muito utilizados em frameworks como **Express**
 * Permitem validações, autenticação, logs, etc.
-
----
-
-## 🖥️ HTML Dinâmico com EJS
-
-### O que é EJS?
-
-* Template engine para Node.js
-* Permite injetar dados do backend diretamente no HTML
-
-### Instalação:
-
-```bash
-npm install ejs
-```
-
-### Uso:
-
-* Buscar dados do banco
-* Enviar para o EJS
-* Renderizar HTML dinâmico
 
 ---
 
@@ -248,9 +187,7 @@ Este repositório reúne minha prática contínua de **Node.js**, indo de concei
 
 * Módulos nativos e criação de servidores
 * APIs REST com Express e JSON
-* Conexão com banco de dados (MongoDB/Mongoose)
 * Middlewares
-* Renderização de HTML dinâmico com EJS
 * Node.js com TypeScript
 * Testes automatizados
 * (Em progresso) Filas com BullMQ e Redis
